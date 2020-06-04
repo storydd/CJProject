@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--html:标签，属性 -->
+<!--标签分两类，双标签 单标签-->
+<!--标签分类：块级标签：独立成行 内联标签：：不会独立成行，默认跟在其他标签后面-->
+<html lang="en">
+<head >
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <title>081417224倪国庆</title>
+    <!--y用来加载挖补资源用的标签-->
+    <!---相对路径 绝对路径-->
+    <link rel="short icon" href="Resource/icon.png">
+    <link rel="stylesheet" href="ExternalStyle.css">
+    <script type="text/javascript" src="Joggle.js"></script>
+    <style>
+      article{
+          margin: 20px;
+      }
+        h3{
+            color:red;
+            font-size: 18px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #dddddd;
+        }
+        h4{
+            font-size: 14px;
+        }
+        p{
+            font-size:10px;
+            line-height: 2em;
+            text-indent: 2em;
+        }
+    </style>
+</head>
+<body>
+
+<!--第一部分-->
+<!--语义化标签：标签本身没有专门的意义，它的主要目的就是增强程序的可读性-->
+<!--span标签放少量文字用的标签-->
+<header>
+    <span>平台风采</span>
+</header>
+
+<!--第二部分-->
+<!--img标签专门放图片资源用的标签-->
+<section class="DS_2_section">
+    <img src="Resource/banner4.png." alt="请检查网络">
+</section>
+
+<!--第三部分-->
+<!---->
+<article>
+    <h3 id="title"></h3>
+    <h4 id="subTitle"></h4>
+    <p id="info"></p>
+</article>
+
+<script>
+    function  json(obj) {
+        title_tag.innerHTML=obj.title;
+        subTitle_tag.innerHTML=obj.subTitle;
+        info_tag.innerHTML=obj.info;
+    }
+    var title_tag=document.getElementById("title");
+    var subTitle_tag=document.getElementById("subTitle");
+    var info_tag=document.getElementById("info");
+
+    var obj_text=JSON.parse(localStorage.getItem("platform_json"));
+    if(obj_text){
+        var obj=obj_text.data;
+        json(obj);
+    }
+    else {
+        Joggle('get','aboutus',"",function(obj,xhr) {
+            json(obj);
+            window.localStorage.setItem("platform_json", xhr);
+        });
+
+    }
+</script>
+
+<!--第四部分-->
+<!--一个ul可以理解为一行，一个li可以理解为一列-->
+<footer>
+    <a href="DropletServicce.html"><img src="Resource/nav10.png" alt=""><span>小滴服务</span></a>
+    <a href="EnterpriseProjectDiamonds.html"><img src="Resource/nav20.png" alt=""><span>企业项目</span></a>
+    <a href="ServiceProcess.html"><img src="Resource/nav30.png" alt=""><span>服务流程</span></a>
+    <a href=""><img src="Resource/nav41.png" alt=""><span style="color:red">平台风采</span></a>
+    <a href="MyDroplet.html"><img src="Resource/nav50.png" alt=""><span>我的小滴</span></a>
+</footer>
+</body>
+</html>
